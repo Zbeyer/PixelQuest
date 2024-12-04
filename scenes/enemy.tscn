@@ -1,0 +1,88 @@
+[gd_scene load_steps=13 format=3 uid="uid://orh2oj7h6gin"]
+
+[ext_resource type="Texture2D" uid="uid://eaeh5monr73b" path="res://assets/brackeys_platformer_assets/sprites/slime_green.png" id="1_xngse"]
+[ext_resource type="PackedScene" uid="uid://djkv0v5bqmxxe" path="res://scenes/killzone.tscn" id="2_o85b3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0kh4p"]
+atlas = ExtResource("1_xngse")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lyjsu"]
+atlas = ExtResource("1_xngse")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0wi0"]
+atlas = ExtResource("1_xngse")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4knw"]
+atlas = ExtResource("1_xngse")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtu5b"]
+atlas = ExtResource("1_xngse")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4upbs"]
+atlas = ExtResource("1_xngse")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n33mk"]
+atlas = ExtResource("1_xngse")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2s6cb"]
+atlas = ExtResource("1_xngse")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0ixd7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0kh4p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lyjsu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0wi0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l4knw")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wtu5b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4upbs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n33mk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2s6cb")
+}],
+"loop": true,
+"name": &"wake",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wem4l"]
+size = Vector2(12, 10)
+
+[node name="Enemy" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0ixd7")
+animation = &"idle"
+
+[node name="Killzone" parent="." instance=ExtResource("2_o85b3")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_wem4l")
