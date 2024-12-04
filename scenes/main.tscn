@@ -1,3 +1,29 @@
-[gd_scene format=3 uid="uid://bhhtfcpq8tumi"]
+[gd_scene load_steps=5 format=3 uid="uid://bhhtfcpq8tumi"]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource type="PackedScene" uid="uid://bgxyftglopdbu" path="res://scenes/player.tscn" id="1_wud7y"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0305p"]
+
+[sub_resource type="Gradient" id="Gradient_p0jnj"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_iai6y"]
+gradient = SubResource("Gradient_p0jnj")
+
+[node name="Game" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_wud7y")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(4, 4)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(2.08165e-12, 8)
+scale = Vector2(10, 10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-3.5, 0.9)
+shape = SubResource("WorldBoundaryShape2D_0305p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(68, -5)
+texture = SubResource("GradientTexture2D_iai6y")
