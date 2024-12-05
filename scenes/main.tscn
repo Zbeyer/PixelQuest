@@ -407,6 +407,22 @@ sources/0 = SubResource("TileSetAtlasSource_toyuh")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qjm8y"]
 
+[sub_resource type="Animation" id="Animation_32gep"]
+length = 8.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4, 7.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(752, -92), Vector2(-50, -94), Vector2(-160, -94)]
+}
+
 [sub_resource type="Animation" id="Animation_4tdk6"]
 resource_name = "move"
 length = 2.0
@@ -424,43 +440,10 @@ tracks/0/keys = {
 "values": [Vector2(496, -25), Vector2(576, -25)]
 }
 
-[sub_resource type="Animation" id="Animation_32gep"]
-length = 8.0
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 4, 7.9),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(752, -92), Vector2(-50, -94), Vector2(-160, -94)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3w0br"]
 _data = {
 "RESET": SubResource("Animation_32gep"),
 "move": SubResource("Animation_4tdk6")
-}
-
-[sub_resource type="Animation" id="Animation_8yogv"]
-resource_name = "move"
-length = 2.0
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(496, -28), Vector2(560, -28)]
 }
 
 [sub_resource type="Animation" id="Animation_x2mve"]
@@ -478,15 +461,9 @@ tracks/0/keys = {
 "values": [Vector2(496, -28)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_tlpmb"]
-_data = {
-"RESET": SubResource("Animation_x2mve"),
-"move": SubResource("Animation_8yogv")
-}
-
-[sub_resource type="Animation" id="Animation_his7y"]
+[sub_resource type="Animation" id="Animation_8yogv"]
 resource_name = "move"
-length = 4.0
+length = 2.0
 loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -495,10 +472,16 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 3.94287),
+"times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-48, 20), Vector2(-48, 120)]
+"values": [Vector2(496, -8), Vector2(560, -8)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tlpmb"]
+_data = {
+"RESET": SubResource("Animation_x2mve"),
+"move": SubResource("Animation_8yogv")
 }
 
 [sub_resource type="Animation" id="Animation_pv1nf"]
@@ -513,7 +496,24 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-48, 20)]
+"values": [Vector2(-40, 20)]
+}
+
+[sub_resource type="Animation" id="Animation_his7y"]
+resource_name = "move"
+length = 4.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-48, 24), Vector2(-48, 120)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i7t0x"]
@@ -548,7 +548,7 @@ debug_color = Color(0.966138, 8.41356e-07, 0.482392, 0.42)
 position = Vector2(2.08165e-12, 8)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(4, 4)
+zoom = Vector2(5, 5)
 limit_bottom = 224
 limit_smoothed = true
 position_smoothing_enabled = true
@@ -584,7 +584,7 @@ libraries = {
 autoplay = "move"
 
 [node name="Platform" parent="." instance=ExtResource("3_lkhff")]
-position = Vector2(-48, 20)
+position = Vector2(-40, 20)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Platform"]
 libraries = {
@@ -616,13 +616,12 @@ position = Vector2(-48, 48)
 [node name="Coin5" parent="." instance=ExtResource("5_mpgnh")]
 position = Vector2(-48, 64)
 
-[node name="Enemy" parent="." instance=ExtResource("6_0ewol")]
-z_index = 3
-position = Vector2(64, 8)
-
-[node name="Enemy2" parent="." instance=ExtResource("6_0ewol")]
-z_index = 3
-position = Vector2(160, 8)
+[node name="Coin10" parent="." instance=ExtResource("5_mpgnh")]
+position = Vector2(128, -48)
 
 [node name="Coin6" parent="." instance=ExtResource("5_mpgnh")]
 position = Vector2(-104, 64)
+
+[node name="Enemy3" parent="." instance=ExtResource("6_0ewol")]
+z_index = 3
+position = Vector2(308, -60)
