@@ -5,7 +5,7 @@ script/source = "extends Area2D
 
 @onready var timer = $Timer
 func _on_body_entered(body):
-	print(\"You Died To A Slime!\")
+	print(\"You Died!\")
 	get_tree().reload_current_scene()
 	
 

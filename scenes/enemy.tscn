@@ -43,7 +43,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wem4l"]
-size = Vector2(12, 10)
+size = Vector2(10, 8)
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 0
@@ -59,12 +59,13 @@ sprite_frames = SubResource("SpriteFrames_jh4j2")
 autoplay = "default"
 
 [node name="Killzone" parent="." instance=ExtResource("2_o85b3")]
-visible = false
+z_index = 5
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
 position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_wem4l")
+debug_color = Color(0.941803, 8.57301e-06, 0.608971, 0.42)
 
 [node name="RayCastDownRight" type="RayCast2D" parent="."]
 position = Vector2(10, 4)
