@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4rf7uwicq00x"]
+
+[ext_resource type="FontFile" uid="uid://c4fobcayoskjc" path="res://assets/brackeys_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="1_4q8qy"]
+
+[node name="Level2" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+
+[node name="Label" type="Label" parent="Camera2D"]
+offset_right = 240.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("1_4q8qy")
+text = "level 2 goes here"
