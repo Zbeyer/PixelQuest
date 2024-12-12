@@ -11,7 +11,12 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var health_bar = $HealthBar
 
-
+func _ready():
+		health_bar.visible = true
+	
+func _on_my_signal():
+	print("Signal Recieved")
+	
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
@@ -52,5 +57,3 @@ func on_hit():
 		print("You Died!")
 		get_tree().reload_current_scene()
 		return
-	
-	

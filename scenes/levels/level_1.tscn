@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_n3ofd"]
 [ext_resource type="Texture2D" uid="uid://dgudqtlv1q5yh" path="res://assets/brackeys_platformer_assets/sprites/world_tileset.png" id="2_gierp"]
-[ext_resource type="Script" path="res://scenes/levels/WodlKill.gd" id="3_gon57"]
+[ext_resource type="Script" path="res://scripts/WodlKill.gd" id="3_gon57"]
 [ext_resource type="PackedScene" uid="uid://bgxyftglopdbu" path="res://scenes/player.tscn" id="4_xqtbw"]
 [ext_resource type="FontFile" uid="uid://c4fobcayoskjc" path="res://assets/brackeys_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="5_isxha"]
 [ext_resource type="PackedScene" uid="uid://clldbehg8viv3" path="res://scenes/coin.tscn" id="6_sw43j"]

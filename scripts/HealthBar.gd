@@ -1,5 +1,11 @@
 extends Node2D
 
+# TODO:signal refactor
+# Player can emit damage_taken(amt: int) and health_gained(amt: int) 
+# signals without caring about what the hp display component does with this info
+#signal hp_gain(index)
+#signal hp_lose(index)
+
 @onready var hp_1 = $hp1
 @onready var hp_2 = $hp2
 @onready var hp_3 = $hp3
