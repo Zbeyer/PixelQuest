@@ -1,7 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://bgxyftglopdbu"]
+[gd_scene load_steps=27 format=3 uid="uid://bgxyftglopdbu"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_id23e"]
 [ext_resource type="Texture2D" uid="uid://1hs6xi4he407" path="res://assets/brackeys_platformer_assets/sprites/knight.png" id="1_ierxh"]
+[ext_resource type="PackedScene" uid="uid://c23aopcmqdcjy" path="res://scenes/HealthBar.tscn" id="3_ldwos"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4cvxb"]
 radius = 7.0
@@ -187,3 +188,7 @@ position = Vector2(2, -13)
 sprite_frames = SubResource("SpriteFrames_ebppn")
 animation = &"jump"
 autoplay = "idle"
+
+[node name="HealthBar" parent="." instance=ExtResource("3_ldwos")]
+position = Vector2(-18, -24)
+scale = Vector2(0.5, 0.5)

@@ -4,10 +4,13 @@ extends CharacterBody2D
 const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
+var hearts = 5
+var direction = 1
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
+@onready var health_bar = $HealthBar
+
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -19,7 +22,7 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction -1 or 1
-	var direction = Input.get_axis("move_left", "move_right")
+	direction = Input.get_axis("move_left", "move_right")
 	if direction:
 		velocity.x = direction * SPEED
 	else:
@@ -36,3 +39,18 @@ func _physics_process(delta):
 	elif direction < 0:
 		animated_sprite_2d.flip_h = true
 	move_and_slide()
+
+func on_hit():
+	hearts -= 1
+	health_bar.update(hearts)
+
+	#match hearts:
+		#4:
+	print(hearts)
+	if hearts <= 0:
+		hearts = 5
+		print("You Died!")
+		get_tree().reload_current_scene()
+		return
+	
+	
