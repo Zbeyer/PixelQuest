@@ -21,6 +21,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var death_timer = $DeathTimer
 @onready var collision_shape_2d = $CollisionShape2D
 @onready var hit_timer = $HitTimer
+@onready var animation_player = $AnimationPlayer
 
 func add_point():
 	score += 1
@@ -28,6 +29,8 @@ func add_point():
 	MyScore.text = str(score)
 	
 func _ready():
+	#const HURT_ZONE = preload("res://scenes/HurtZone.tscn")
+	#HURT_ZONE.connect("hp_lose", self, "_on_hp_lose")
 	reset()
 	
 func player():
@@ -67,7 +70,7 @@ func on_hit():
 	collision_shape_2d.set_deferred("disabled", true)
 
 	
-	var knockback = Vector2(-1 * direction * SPEED * 50, -200)
+	var knockback = Vector2(-1 * direction * SPEED * 25, -150)
 	velocity = knockback
 	move_and_slide()
 	
@@ -78,6 +81,9 @@ func on_hit():
 	if hearts <= 0:
 		hearts = 0
 		on_death()
+		animation_player.play("death")
+	else:
+		animation_player.play("hurt")
 
 func on_death():
 	print("You Died!")

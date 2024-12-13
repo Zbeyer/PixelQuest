@@ -1,9 +1,11 @@
-[gd_scene load_steps=28 format=3 uid="uid://bgxyftglopdbu"]
+[gd_scene load_steps=34 format=3 uid="uid://bgxyftglopdbu"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_id23e"]
 [ext_resource type="Texture2D" uid="uid://1hs6xi4he407" path="res://assets/brackeys_platformer_assets/sprites/knight.png" id="1_ierxh"]
 [ext_resource type="PackedScene" uid="uid://c23aopcmqdcjy" path="res://scenes/HealthBar.tscn" id="3_ldwos"]
 [ext_resource type="FontFile" uid="uid://c4fobcayoskjc" path="res://assets/brackeys_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="4_6b614"]
+[ext_resource type="AudioStream" uid="uid://cjp88nijsd7yq" path="res://assets/Super Dialogue Audio Pack v1/Step 2 - Audio Files/7 - Damage/Female/Karen Cenon/damage_1_karen.wav" id="5_cfdkj"]
+[ext_resource type="AudioStream" uid="uid://cyd78rwki6sc6" path="res://assets/Super Dialogue Audio Pack v1/Step 2 - Audio Files/8 - Death/Female/Karen Cenon/death_1_karen.wav" id="5_wj0mc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4cvxb"]
 radius = 7.0
@@ -174,6 +176,71 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="Animation" id="Animation_7l621"]
+resource_name = "hurt"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sounds/HurtSound:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ux6d5"]
+resource_name = "death"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sounds/DeathSound:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_g04vn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sounds/DeathSound:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sounds/HurtSound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rgjlu"]
+_data = {
+"RESET": SubResource("Animation_g04vn"),
+"death": SubResource("Animation_ux6d5"),
+"hurt": SubResource("Animation_7l621")
+}
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 5
 collision_layer = 2
@@ -191,6 +258,7 @@ animation = &"jump"
 autoplay = "idle"
 
 [node name="DeathTimer" type="Timer" parent="."]
+wait_time = 3.0
 
 [node name="HitTimer" type="Timer" parent="."]
 wait_time = 0.1
@@ -216,6 +284,20 @@ theme_override_fonts/font = ExtResource("4_6b614")
 theme_override_font_sizes/font_size = 8
 text = "0"
 horizontal_alignment = 2
+
+[node name="sounds" type="Node" parent="."]
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="sounds"]
+stream = ExtResource("5_cfdkj")
+bus = &"SFX"
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="sounds"]
+stream = ExtResource("5_wj0mc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rgjlu")
+}
 
 [connection signal="hp_gain" from="." to="." method="_on_hp_gain"]
 [connection signal="hp_gain" from="." to="HealthBar" method="_on_player_hp_gain"]
