@@ -1,16 +1,12 @@
 extends Node2D
 
-# TODO:signal refactor
-# Player can emit damage_taken(amt: int) and health_gained(amt: int) 
-# signals without caring about what the hp display component does with this info
-#signal hp_gain(index)
-#signal hp_lose(index)
-
 @onready var hp_1 = $hp1
 @onready var hp_2 = $hp2
 @onready var hp_3 = $hp3
 @onready var hp_4 = $hp4
 @onready var hp_5 = $hp5
+
+#func _ready():
 
 func update(num):
 	if num >= 5:
@@ -29,3 +25,11 @@ func update(num):
 		hp_2.lose()
 	if num < 1:
 		hp_1.lose()
+
+
+func _on_player_hp_gain(index):
+	pass # Replace with function body.
+
+
+func _on_player_hp_lose(index):
+	pass # Replace with function body.

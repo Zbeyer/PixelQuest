@@ -6,6 +6,8 @@ signal my_signal
 @onready var animation_player = $AnimationPlayer
 
 func _on_body_entered(body):
-	game_manager.add_point()
+	
+	if body.has_method("player"):
+		body.add_point()
 	animation_player.play("pickup")
 	my_signal.emit()

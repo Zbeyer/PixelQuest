@@ -1,8 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://bgxyftglopdbu"]
+[gd_scene load_steps=28 format=3 uid="uid://bgxyftglopdbu"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_id23e"]
 [ext_resource type="Texture2D" uid="uid://1hs6xi4he407" path="res://assets/brackeys_platformer_assets/sprites/knight.png" id="1_ierxh"]
 [ext_resource type="PackedScene" uid="uid://c23aopcmqdcjy" path="res://scenes/HealthBar.tscn" id="3_ldwos"]
+[ext_resource type="FontFile" uid="uid://c4fobcayoskjc" path="res://assets/brackeys_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="4_6b614"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4cvxb"]
 radius = 7.0
@@ -189,6 +190,36 @@ sprite_frames = SubResource("SpriteFrames_ebppn")
 animation = &"jump"
 autoplay = "idle"
 
+[node name="DeathTimer" type="Timer" parent="."]
+
+[node name="HitTimer" type="Timer" parent="."]
+wait_time = 0.1
+
 [node name="HealthBar" parent="." instance=ExtResource("3_ldwos")]
 position = Vector2(-18, -24)
 scale = Vector2(0.5, 0.5)
+
+[node name="ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MyScore" type="Label" parent="ui"]
+layout_mode = 0
+offset_left = -14.0
+offset_top = -40.0
+offset_right = 26.0
+offset_bottom = -17.0
+theme_override_colors/font_color = Color(1, 1, 0.501961, 1)
+theme_override_fonts/font = ExtResource("4_6b614")
+theme_override_font_sizes/font_size = 8
+text = "0"
+horizontal_alignment = 2
+
+[connection signal="hp_gain" from="." to="." method="_on_hp_gain"]
+[connection signal="hp_gain" from="." to="HealthBar" method="_on_player_hp_gain"]
+[connection signal="hp_lose" from="." to="." method="_on_hp_lose"]
+[connection signal="hp_lose" from="." to="HealthBar" method="_on_player_hp_lose"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]
